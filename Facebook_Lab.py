@@ -959,7 +959,7 @@ class FBgraph(object):
             self.contexts_list = {}
 
             # Loading in data other than the Database    
-            other = open("./"+str(self.graph_name)+"_general_data.csv", "r+")
+            other = open("./"+str(file_name)+"_general_data.csv", "r+")
             for line in other:
                 data = line.strip().split(";")
                 if data[0] == "my_ID":
@@ -981,7 +981,7 @@ class FBgraph(object):
     
 
             # loading in the database          
-            self.friend_db = pd.read_csv("./"+str(self.graph_name)+"_friend_data.csv", header=0, index_col=0)    
+            self.friend_db = pd.read_csv("./"+str(file_name)+"_friend_data.csv", header=0, index_col=0)    
             new_names = []
             for i in list(self.friend_db.columns.values):
                 new_names.append(int(i))
