@@ -298,7 +298,7 @@ class FBgraph(object):
 
 			r = self.friend_db[int(i)]["gender"]
 			if r==r:
-				self.friend_db[int(i)]["gender"] = int(r)
+				self.friend_db[int(i)]["gender"] = str(r)
 
 			p = self.friend_db[int(i)]["race"]
 			if p==p:
