@@ -186,7 +186,7 @@ class FBgraph(object):
 						+str(colors[count])+ "\"" + ",\"id\":"+"\""
 						+str(rewrite[i]) + "\"" + ",\"name\":"+"\""
 						+str(my_dct["name"]) + "\"" +",\"value\":"
-						+str(mutuals[i]) + "\", \"desc\":Name:"
+						+str(mutuals[i]) + ", \"desc\":Name:"
 						+str(my_dct["name"]) + "<br>Known from:"
 						+str(my_dct["known from"]) + "<br>Gender:"
 						+str(my_dct["gender"]) + "<br>Race:},\n")
