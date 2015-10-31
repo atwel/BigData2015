@@ -86,23 +86,23 @@ class FBgraph(object):
 				self.defined_colors.append("white")
 
 
-	def count_components(self, withme=True):
+	def count_components(self, withme=False):
 		""" This method returns the number of components in
 		the network without the ego.It does this by removing 
 		the ego in a copy of the network."""
 
 		if withme:
 			print ("If you're in the network, it"
-				+"has to have a single component!")
+				+" has to have a single component!")
 		else:
 			bu = nx.Graph()
 			bu.add_nodes_from(self.mynet.nodes())
 			bu.add_edges_from(self.mynet.edges())
 			bu.remove_node(self.my_ID)
 
-		print ("Your network has "
-			+ str(nx.number_connected_components(bu)) 
-			+" components")
+			print ("Your network has "
+				+ str(nx.number_connected_components(bu)) 
+				+" components")
 
 
 	def draw_network(self,file_name="Network_visualization.html",
