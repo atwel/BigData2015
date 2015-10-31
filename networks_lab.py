@@ -296,37 +296,41 @@ class FBgraph(object):
 			if q==q:
 				self.friend_db[int(i)]["known from"] = int(q)
 
-			r = self.friend_db[int(i)]["gender"]
+			r = self.friend_db[int(i)][attrs[6]]
 			if r==r:
-				self.friend_db[int(i)]["gender"] = str(r)
+				self.friend_db[int(i)][attrs[6]] = int(r)
 
-			p = self.friend_db[int(i)]["race"]
+			p = self.friend_db[int(i)][attrs[7]]
 			if p==p:
-				self.friend_db[int(i)]["race"] = int(p)
+				self.friend_db[int(i)][attrs[7]] = int(p)
+				
+			s = self.friend_db[int(i)][attrs[8]]
+			if s==s:
+				self.friend_db[int(i)][attrs[8]] = int(s)
 
-		if type(self.friend_db[int(i)]["mutuals"]) == str:
-			mut_str = self.friend_db[int(i)]["mutuals"][1:-1].split(",")
-			mutuals = []
-			for j in mut_str:
-				try:
-					mutuals.append(int(j))
-				except:
-					if j != "":
-						mutuals.append(long(j))
-					else:
-						pass
+			if type(self.friend_db[int(i)]["mutuals"]) == str:
+				mut_str = self.friend_db[int(i)]["mutuals"][1:-1].split(",")
+				mutuals = []
+				for j in mut_str:
+					try:
+						mutuals.append(int(j))
+					except:
+						if j != "":
+							mutuals.append(long(j))
+						else:
+							pass
 
-		self.friend_db[int(i)]["mutuals"] = mutuals
-		for j in mutuals:
-			if int(j) in new_names:
-				try:
-					edge = self.mynet[int(j)][int(i)]
-				except:
-					self.mynet.add_edge(int(j), int(i))
+			self.friend_db[int(i)]["mutuals"] = mutuals
+			for j in mutuals:
+				if int(j) in new_names:
+					try:
+						edge = self.mynet[int(j)][int(i)]
+					except:
+						self.mynet.add_edge(int(j), int(i))
 
-		val2 = self.friend_db[int(i)]["strong tie"]
-		if val2 != "" and (val2==val2):
-			self.mynet[int(i)][self.my_ID]["strong"] = int(val2)
+			val = self.friend_db[int(i)]["strong tie"]
+			if val != "" and (val==val):
+				self.mynet[int(i)][self.my_ID]["strong"] = int(val)
 
 		for edge in self.mynet.edges():
 			try:
