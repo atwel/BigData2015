@@ -731,6 +731,39 @@ class FBgraph(object):
 				number = 0
 
 			print str(j)+" : "+str(number)
+			
+	def ids_to_names(self):
+		""" Returns a dictionary links IDs to names. """
+		my_dict = {}
+		for i in list(self.friend_db.columns.values):
+			my_dict[int(i)] = self.friend_db[int(i)]["name"]
+		return my_dict
+        
+     
+     	def name_to_id(self, name):
+     		"""Returns the ID number associated with the name ."""
+
+		for id in self.friend_db:
+			name1 = str(self.friend_db[int(id)]["name"])
+			if name1 == name:
+				return id
+			print "Not a valid name"
+
+
+	def id_to_name(self, id):
+		"""Returns the name associated with the ID number."""
+		try:
+			name = str(self.friend_db[int(id)]["name"])
+			return name
+		except:
+			print "Not a valid ID"
+			return id
+    
+    
+
+        
+        
+
 
 
 	def ids_to_names(self):
