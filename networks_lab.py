@@ -182,14 +182,14 @@ class FBgraph(object):
 					mutuals[i]=len(my_dct["mutuals"])
 						
 					# The next 3 lines create the bulk of the text
-					giant_string += ("{\"color\":"+"\""
-						+str(colors[count])+"\"" + ",\"id\":"+"\""
-						+str(rewrite[i])+"\""+",\"name\":"+"\""
-						+str(my_dct["name"])+"\", \"value\":"
-						+str(mutuals[i])+"\", \"desc\":Name:"
-						+str(my_dct["name"])+"<br>Known from:"
-						+str(my_dct["known from"])+"<br>Gender:"
-						+str(my_dct["gender"])+"<br>Race:},\n")
+					giant_string += ("{\"color\":" + "\""
+						+str(colors[count])+ "\"" + ",\"id\":"+"\""
+						+str(rewrite[i]) + "\"" + ",\"name\":"+"\""
+						+str(my_dct["name"]) + "\"" +",\"value\":"
+						+str(mutuals[i]) + "\", \"desc\":Name:"
+						+str(my_dct["name"]) + "<br>Known from:"
+						+str(my_dct["known from"]) + "<br>Gender:"
+						+str(my_dct["gender"]) + "<br>Race:},\n")
 
 					count +=1
 
