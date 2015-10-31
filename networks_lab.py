@@ -188,8 +188,8 @@ class FBgraph(object):
 						+str(my_dct["name"]) + "\"" +",\"value\":"
 						+str(mutuals[i]) + ", \"desc\":Name:"
 						+str(my_dct["name"]) + "<br>Known from:"
-						+str(my_dct["known from"]) + "<br>Gender:"
-						+str(my_dct["gender"]) + "<br>Race:},\n")
+						+str(my_dct["known from"]) + "\"<br>Gender:"
+						+str(my_dct["gender"]) + "<br>Race:}\"\n")
 
 					count +=1
 
