@@ -822,7 +822,7 @@ class FBgraph(object):
 			print val
 		else:
 			print ("ERROR: You must first enter information about"
-				+" strong ties [Command define_strong_ties()].")_
+				+" strong ties [Command define_strong_ties()].")
 
 
 	def test_Strong_Triadic_Closure_within_group(self, group):
