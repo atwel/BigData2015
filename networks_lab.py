@@ -263,14 +263,12 @@ class FBgraph(object):
 					self.mynet.add_node(self.my_ID)
 			if data[0] == "contexts_list":
 				self.contexts_list = {}
-			if data[1] != "":
-				new_data = data[1].split(",")
-				print new_data
-				for i in new_data:
-					if i != "":
-						j = i.split(":")
-						print j
-						self.contexts_list[int(j[0])] = j[1]
+				if data[1] != "":
+					new_data = data[1].split(",")
+					for i in new_data:
+						if i != "":
+							j = i.split(":")
+							self.contexts_list[int(j[0])] = j[1]
 			if data[0] == "defined_colors":
 				self.defined_colors = [i for i in data[1].split(",")]
 
