@@ -114,7 +114,7 @@ class FBgraph(object):
 		my_file = open(file_name, "w")
 		for line in base_file:
 			my_file.write(line)
-			if line == "var nodes=[":
+			if "var nodes=[" in line:
 				if not withme:
 					strong=False
 					if colors == []:
@@ -197,7 +197,7 @@ class FBgraph(object):
 				my_file.write(giant_string[:-2]+"];\n")
 
 			# Part 2: adding the edges       
-			if line == "var links=[":
+			if "var links=[" in line:
 
 				count = 0
 				edges = self.mynet.edges()
