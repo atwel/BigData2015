@@ -116,7 +116,7 @@ var gnodes = svg.selectAll('gnode')
      .call(drag)
      .on("dblclick",function(d) {d.fixed = false;})
      .on("mouseover", function(d) {
-              tooltip.html(d.name);
+              tooltip.html(d.desc);
               tooltip.style("cursor", "Default");
               tooltip.style("width", "auto");
               tooltip.style("visibility", "visible");
@@ -131,8 +131,8 @@ var gnodes = svg.selectAll('gnode')
 var circle = gnodes.append("circle")
     .attr("class", "node")
     .attr("r", function(d) {return 10;})
-    .style("fill", function(d) {return "blue";})
-    .style("stroke", function(d) {return "lightblue";})    
+    .style("fill", function(d) {return d.color;})
+    .style("stroke", function(d) {return "black";})    
 
 
 // Use elliptical arc path segments to doubly-encode directionality.
