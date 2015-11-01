@@ -106,7 +106,7 @@ class FBgraph(object):
 
 
 	def draw_network(self,file_name="Network_visualization.html",
-		colors=[], strong=False, weight=False, withme=True):
+		colors=[], strong=False, weight=False, withme=False):
 		""" This function writes the network to an html file 
 		so that users can explore the network move thoroughly.
 		"""
