@@ -20,7 +20,7 @@ import urllib2
 
 
 
-class FBgraph(object):
+class Graph(object):
 	""" This is the only class unique to the module. It holds key variables
 	and other objects (like the facebook connection and the pandas 
 	database. The name parameter is so that multiple databases and
@@ -104,6 +104,8 @@ class FBgraph(object):
 				+ str(nx.number_connected_components(bu)) 
 				+" components")
 
+	def density(self):
+		return nx.density(self.mynet)
 
 	def draw_network(self,file_name="Network_visualization.html",
 		colors=[], strong=False, weight=False, withme=False):
