@@ -353,7 +353,7 @@ class Graph(object):
 			bu.remove_node(self.my_ID)
 			for n in bu.nodes():
 				if nx.is_isolate(bu, n):
-					bu.remove_node(n
+					bu.remove_node(n)
 			return nx.average_shortest_path_length(bu)
 
 
