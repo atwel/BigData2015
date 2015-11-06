@@ -112,7 +112,7 @@ class Graph(object):
 		""" This function writes the network to an html file 
 		so that users can explore the network move thoroughly.
 		"""
-		base_file = open("network_drawing.html", "r")
+		base_file = open("D3JS.html", "r")
 		my_file = open(file_name, "w")
 		for line in base_file:
 			my_file.write(line)
@@ -346,7 +346,7 @@ class Graph(object):
 	def avg_path_length(self, withme=False):
 		if withme:
 			return nx.average_shortest_path_length(self.mynet)
-		elif:
+		else:
 			bu = nx.Graph()
 			bu.add_nodes_from(self.mynet.nodes())
 			bu.add_edges_from(self.mynet.edges())
