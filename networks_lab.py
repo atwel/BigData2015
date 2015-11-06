@@ -343,8 +343,18 @@ class Graph(object):
 		print "Data successfully loaded"
 
 
-	def avg_path_length(self):
-		return nx.average_shortest_path_length(self.mynet)
+	def avg_path_length(self, withme=False):
+		if withme:
+			return nx.average_shortest_path_length(self.mynet)
+        	elif:
+        		bu = nx.Graph()
+        		bu.add_nodes_from(self.mynet.nodes())
+        		bu.add_edges_from(self.mynet.edges())
+        		bu.remove_node(self.my_ID)
+        		for n in bu.nodes():
+        			if nx.is_isolate(bu, n):
+        				bu.remove_node(n)
+        		return nx.average_shortest_path_length(bu)
 
 
 	def diameter(self, withme=False):
