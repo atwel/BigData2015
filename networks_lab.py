@@ -375,7 +375,7 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new)/float(len(new))
+					return sum(new.values())/float(len(new.values()))
 				else:
 					return new
 	 		else:
@@ -385,7 +385,7 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new)/float(len(new))
+					return sum(new.values())/float(len(new.values()))
 				else:
 					return new
 				return new
@@ -419,7 +419,7 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new)/float(len(new))
+					return sum(new.values())/float(len(new.values()))
 				else:
 					return new
 			else:
@@ -429,7 +429,7 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new)/float(len(new))
+					return sum(new.values())/float(len(new.values()))
 				else:
 					return new
 
@@ -462,7 +462,7 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new)/float(len(new))
+					return sum(new.values())/float(len(new.values()))
 				else:
 					return new
 			else:
@@ -472,7 +472,7 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new)/float(len(new))
+					return sum(new.values())/float(len(new.values()))
 				else:
 					return new
 		else:
@@ -506,20 +506,23 @@ class Graph(object):
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
-				return new
+				if average:
+					return sum(new.values())/float(len(new.values()))
+				else:
+					return new
 			else:
-				bu = nx.Graph()
-				bu.add_nodes_from(self.mynet.nodes())
-				bu.add_edges_from(self.mynet.edges())
-				bu.remove_node(self.my_ID)
-				my_dict = nx.eigenvector_centrality(bu,
+
+				my_dict = nx.eigenvector_centrality(self.no_ego_net,
 					max_iter = iterations)
 
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+				if average:
+					return sum(new.values())/float(len(new.values()))
+				else:
+					return new
 
-				return new
 
 		else:
 			try:
