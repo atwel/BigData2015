@@ -42,11 +42,7 @@ class Graph(object):
 		self.defined_colors = []
 		self.me = False
 		self.old_positions=[]
-		bu = nx.Graph()
-		bu.add_nodes_from(self.mynet.nodes())
-		bu.add_edges_from(self.mynet.edges())
-		bu.remove_node(self.my_ID)
-		self.no_ego_net = bu
+
 
 
 	def random_sample(self,count=200):
@@ -338,7 +334,12 @@ class Graph(object):
 				self.mynet[int(edge[0])][int(edge[1])]["strong"]
 			except:
 				self.mynet[int(edge[0])][int(edge[1])]["strong"]=0
-
+		
+		bu = nx.Graph()
+		bu.add_nodes_from(self.mynet.nodes())
+		bu.add_edges_from(self.mynet.edges())
+		bu.remove_node(self.my_ID)
+		self.no_ego_net = bu
 
 		print "Data successfully loaded"
 
