@@ -532,9 +532,14 @@ class Graph(object):
 			print "Invalid node name."
 
 
-	def average_degree(self):
-		vals = list(self.mynet.degree(mynet.nodes()).values())
-		return sum(vals)/float(len(vals))
+	def average_degree(self, withme=False):
+		if withme:
+			vals = list(self.mynet.degree(self.mynet.nodes()).values())
+			return sum(vals)/float(len(vals))
+		else:
+			vals = list(self.mynet.degree(self.no_ego_net.nodes()).values())
+			return sum(vals)/float(len(vals))
+			
 
 
 	def clustering(self, group=0):
