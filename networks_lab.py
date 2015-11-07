@@ -339,6 +339,9 @@ class Graph(object):
 		bu.add_nodes_from(self.mynet.nodes())
 		bu.add_edges_from(self.mynet.edges())
 		bu.remove_node(self.my_ID)
+		for n in bu.nodes():
+			if nx.is_isolate(bu, n):
+				bu.remove_node(n)  
 		self.no_ego_net = bu
 
 		print "Data successfully loaded"
