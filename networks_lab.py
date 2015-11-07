@@ -96,8 +96,12 @@ class Graph(object):
 			print ("If you're in the network, it"
 				+" has to have a single component!")
 		else:
+			bu = nx.Graph()
+			bu.add_nodes_from(self.mynet.nodes())
+			bu.add_edges_from(self.mynet.edges())
+			bu.remove_node(self.my_ID)
 			print ("Your network has "
-				+ str(nx.number_connected_components(self.no_ego_net)) 
+				+ str(nx.number_connected_components(bu)) 
 				+" components")
 
 	def density(self):
