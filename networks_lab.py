@@ -42,6 +42,11 @@ class Graph(object):
 		self.defined_colors = []
 		self.me = False
 		self.old_positions=[]
+		bu = nx.Graph()
+		bu.add_nodes_from(self.mynet.nodes())
+		bu.add_edges_from(self.mynet.edges())
+		bu.remove_node(self.my_ID)
+		self.no_ego_net = bu
 
 
 	def random_sample(self,count=200):
@@ -95,13 +100,8 @@ class Graph(object):
 			print ("If you're in the network, it"
 				+" has to have a single component!")
 		else:
-			bu = nx.Graph()
-			bu.add_nodes_from(self.mynet.nodes())
-			bu.add_edges_from(self.mynet.edges())
-			bu.remove_node(self.my_ID)
-
 			print ("Your network has "
-				+ str(nx.number_connected_components(bu)) 
+				+ str(nx.number_connected_components(self.no_ego_net)) 
 				+" components")
 
 	def density(self):
@@ -347,14 +347,7 @@ class Graph(object):
 		if withme:
 			return nx.average_shortest_path_length(self.mynet)
 		else:
-			bu = nx.Graph()
-			bu.add_nodes_from(self.mynet.nodes())
-			bu.add_edges_from(self.mynet.edges())
-			bu.remove_node(self.my_ID)
-			for n in bu.nodes():
-				if nx.is_isolate(bu, n):
-					bu.remove_node(n)
-			return nx.average_shortest_path_length(bu)
+			return nx.average_shortest_path_length(self.no_ego_net)
 
 
 	def diameter(self, withme=False):
@@ -362,18 +355,10 @@ class Graph(object):
 		if withme:
 			print "If you're in the network, it has to be diameter 2"
 		else:
-			bu = nx.Graph()
-			bu.add_nodes_from(self.mynet.nodes())
-			bu.add_edges_from(self.mynet.edges())
-			bu.remove_node(self.my_ID)
-			for n in bu.nodes():
-				if nx.is_isolate(bu, n):
-					bu.remove_node(n)  
-
-		print "Your network has a diameter of "+ str(nx.diameter(bu))
+			print "Your network has a diameter of "+ str(nx.diameter(self.no_ego_net))
 
 
-	def degree_centrality(self, withme=True, node=None):
+	def degree_centrality(self, withme=True, node=None, average=False):
 
 		if node==None:
 			if withme:
@@ -381,93 +366,126 @@ class Graph(object):
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
-				return new
+				if average:
+					return sum(new)/float(len(new))
+				else:
+					return new
 	 		else:
-				bu = nx.Graph()
-				bu.add_nodes_from(self.mynet.nodes())
-				bu.add_edges_from(self.mynet.edges())
-				bu.remove_node(self.my_ID)
-				my_dict = nx.degree_centrality(bu)
+				my_dict = nx.degree_centrality(self.no_ego_net)
 
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+				if average:
+					return sum(new)/float(len(new))
+				else:
+					return new
 				return new
 	
 		else:
-			try:
+			if withme:
 				my_dict = nx.degree_centrality(self.mynet)
-				return my_dict[node]
-			except:
 				try:
-					return my_dict[self.name_to_id(node)]
+					return my_dict[node]
 				except:
-					print "Invalid node name"
+					try:
+						return my_dict [self.name_to_id(node)]
+					except:
+						print "Invalid node name"
+			else:
+				my_dict = nx.degree_centrality(self.no_ego_net)
+				try:
+					return my_dict[node]
+				except:
+					try:
+						return my_dict[self.name_to_id(node)]
+					except:
+						print "Invalid node name"
 
 
-	def betweenness_centrality(self, withme=False, node=None):
+	def betweenness_centrality(self, withme=False, node=None,average=False):
 		if node==None:
 			if withme:
 				my_dict = nx.betweenness_centrality(self.mynet)
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
-				return new
+				if average:
+					return sum(new)/float(len(new))
+				else:
+					return new
 			else:
-				bu = nx.Graph()
-				bu.add_nodes_from(self.mynet.nodes())
-				bu.add_edges_from(self.mynet.edges())
-				bu.remove_node(self.my_ID)
-				my_dict = nx.betweenness_centrality(bu)
+				my_dict = nx.betweenness_centrality(self.no_ego_net)
 
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
-
-				return new
+				if average:
+					return sum(new)/float(len(new))
+				else:
+					return new
 
 		else:
-			try:
+			if withme:
 				my_dict = nx.betweenness_centrality(self.mynet)
-				return my_dict[node]
-			except:
 				try:
-					return my_dict[self.name_to_id(node)]
+					return my_dict[node]
 				except:
-					print "Invalid node name"
+					try:
+						return my_dict[self.name_to_id(node)]
+					except:
+						print "Invalid node name"
+			else:
+				my_dict = nx.betweenness_centrality(self.no_ego_net)
+				try:
+					return my_dict[node]
+				except:
+					try:
+						return my_dict[self.name_to_id(node)]
+					except:
+						print "Invalid node name"
 
 
-	def closeness_centrality(self, withme=False, node=None):
+	def closeness_centrality(self, withme=False, node=None, average=False):
 		if node==None:
 			if withme:
 				my_dict = nx.closeness_centrality(self.mynet)
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
-				return new
+				if average:
+					return sum(new)/float(len(new))
+				else:
+					return new
 			else:
-				bu = nx.Graph()
-				bu.add_nodes_from(self.mynet.nodes())
-				bu.add_edges_from(self.mynet.edges())
-				bu.remove_node(self.my_ID)
-				my_dict = nx.closeness_centrality(bu)
+				my_dict = nx.closeness_centrality(self.no_ego_net)
 
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
-
-				return new
-
+				if average:
+					return sum(new)/float(len(new))
+				else:
+					return new
 		else:
-			try:
+			if withme:
 				my_dict = nx.closeness_centrality(self.mynet)
-				return my_dict[node]
-			except:
 				try:
-					return my_dict[self.name_to_id(node)]
+					return my_dict[node]
 				except:
-					print "Invalid node name"
-
+					try:
+						return my_dict[self.name_to_id(node)]
+					except:
+						print "Invalid node name"
+			else:
+				my_dict = nx.closeness_centrality(self.no_ego_net)
+				try:
+					return my_dict[node]
+				except:
+					try:
+						return my_dict[self.name_to_id(node)]
+					except:
+						print "Invalid node name"
 
 	def eigenvector_centrality(self, iterations, withme=False, node=None):
 		my_dict = nx.eigenvector_centrality(self.mynet,
