@@ -792,7 +792,8 @@ class Graph(object):
 			name1 = str(self.friend_db[int(id)]["name"])
 			if name1 == name:
 				return id
-			print "Not a valid name"
+				
+		print "Not a valid name"
 
 
 	def id_to_name(self, id):
