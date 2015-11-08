@@ -16,6 +16,7 @@ import random
 import IPython as ip
 import math
 import urllib2
+import os
 
 
 
@@ -958,6 +959,8 @@ def update_files():
 			for line in file_:
 				new_file.write(line)
 			new_file.close()
+	os.remove("networks_lab.py")
+	os.remove("networks_lab.pyc")
 	names = ["networks_lab.py", "D3JS.html","Population_data.txt"]
 	for f in names:
 		f = open(name,"wb")
