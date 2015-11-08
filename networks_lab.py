@@ -705,13 +705,12 @@ class Graph(object):
 		print "Average clustering for group is "+str(avg)
 
  
-	def attribute_by_attribute(self, attribute_one, 
-		group_number, attribute_two):
+	def attribute_by_attribute(self, group_number, attribute_two):
 		""" This method allows the user to see the prevalences of a 
 		particular attribute within a group. This is no doubt a way to do
 		this using Pandas functionality, but that is for a later iteration.
 		"""
-
+		attribute_one = 'known from'
 		indices = list(self.friend_db.index.values)
 		if (attribute_one not in indices or attribute_two not in indices):
 			print "Invalid inputs. Make sure the dictionary and spelling are correct."
@@ -729,8 +728,7 @@ class Graph(object):
 						vals[which] = 1
 						count +=1
 
-			print "For friends in group "+str(group_number)+" for attribute "+str(attribute_one)+","
-			print "they breakdown into the following percentages for attribute "+str(attribute_two)
+			print "For friends in group "+str(group_number)+"breakdown into the following percentages for attribute "+str(attribute_two)
 			print "(Sample size = "+str(count)+")"
 
 			for j in vals:
@@ -759,7 +757,7 @@ class Graph(object):
 				vals[which] = 1
 				count +=1
 
-		print "Your friend breakdown into the following percentages for attribute "+str(attribute)
+		print "Your friends breakdown into the following percentages for attribute "+str(attribute)
 		print "(Sample size = "+str(count)+")"
             
 		for j in vals:
@@ -952,7 +950,7 @@ def download_files():
 	a better way to do this, but it isn't clear in the Wakari docs.
 	"""
 	stem = "https://raw.githubusercontent.com/atwel/BigData2015/master/"
-	for f_name in range(1,6):
+	for f_name in range(1,4):
 		for end in ["_friend_data.csv","_general_data.csv"]:
 			name = str(f_name) +end
 			file_=urllib2.urlopen(stem+name)
@@ -960,7 +958,7 @@ def download_files():
 			for line in file_:
 				new_file.write(line)
 			new_file.close()
-	name = "network_drawing.html"
+	name = "Population_data.txt"
 	f = open(name,"wb")
 	for line in urllib2.urlopen(stem+name):
 		f.write(line)
