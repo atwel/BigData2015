@@ -963,13 +963,17 @@ def update_files():
 			for line in file_:
 				new_file.write(line)
 			new_file.close()
+	try:
+		os.remove("network_labs.py")
+	except:
+		pass
 
 	names = ["networks_lab.py", "D3JS.html","Population_data.txt"]
 	for f in names:
-		f = open(name,"wb")
-		for line in urllib2.urlopen(stem+name):
-			f.write(line)
-		f.close()
+		fi = open(f,"wb")
+		for line in urllib2.urlopen(stem+f):
+			fi.write(line)
+		fi.close()
 	try:
 		os.remove("networks_lab.pyc")
 	except:
