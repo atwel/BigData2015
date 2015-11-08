@@ -75,7 +75,7 @@ class Graph(object):
 			else:
 				key = self.friend_db[person][attribute]
 				try:
-					self.defined_colors.append(my_dict[key])
+					self.defined_colors.append(dictionary[key])
 				except:
 					self.defined_colors.append("white")
 
@@ -371,9 +371,10 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new.values())/float(len(new.values()))
+					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
-					return new
+					for i,j in new.items():
+						print i, round(j,4)
 	 		else:
 				my_dict = nx.degree_centrality(self.no_ego_net)
 
@@ -381,16 +382,16 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new.values())/float(len(new.values()))
+					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
-					return new
-				return new
+					for i,j in new.items():
+						print i, round(j,4)
 	
 		else:
 			if withme:
 				my_dict = nx.degree_centrality(self.mynet)
 				try:
-					return my_dict[node]
+					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
 				except:
 					try:
 						return my_dict [self.name_to_id(node)]
@@ -399,10 +400,10 @@ class Graph(object):
 			else:
 				my_dict = nx.degree_centrality(self.no_ego_net)
 				try:
-					return my_dict[node]
+					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
 				except:
 					try:
-						return my_dict[self.name_to_id(node)]
+						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
 					except:
 						print "Invalid node name"
 
@@ -415,9 +416,10 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new.values())/float(len(new.values()))
+					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
-					return new
+					for i,j in new.items():
+						print i, round(j,4)
 			else:
 				my_dict = nx.betweenness_centrality(self.no_ego_net)
 
@@ -425,15 +427,16 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new.values())/float(len(new.values()))
+					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
-					return new
+					for i,j in new.items():
+						print i, round(j,4)
 
 		else:
 			if withme:
 				my_dict = nx.betweenness_centrality(self.mynet)
 				try:
-					return my_dict[node]
+					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
 				except:
 					try:
 						return my_dict[self.name_to_id(node)]
@@ -442,10 +445,10 @@ class Graph(object):
 			else:
 				my_dict = nx.betweenness_centrality(self.no_ego_net)
 				try:
-					return my_dict[node]
+					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
 				except:
 					try:
-						return my_dict[self.name_to_id(node)]
+						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
 					except:
 						print "Invalid node name"
 
@@ -458,9 +461,10 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new.values())/float(len(new.values()))
+					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
-					return new
+					for i,j in new.items():
+						print i, round(j,4)
 			else:
 				my_dict = nx.closeness_centrality(self.no_ego_net)
 
@@ -468,26 +472,27 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new.values())/float(len(new.values()))
+					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
-					return new
+					for i,j in new.items():
+						print i, round(j,4)
 		else:
 			if withme:
 				my_dict = nx.closeness_centrality(self.mynet)
 				try:
-					return my_dict[node]
+					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
 				except:
 					try:
-						return my_dict[self.name_to_id(node)]
+						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
 					except:
 						print "Invalid node name"
 			else:
 				my_dict = nx.closeness_centrality(self.no_ego_net)
 				try:
-					return my_dict[node]
+					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
 				except:
 					try:
-						return my_dict[self.name_to_id(node)]
+						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
 					except:
 						print "Invalid node name"
 
@@ -503,9 +508,10 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new.values())/float(len(new.values()))
+					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
-					return new
+					for i,j in new.items():
+						print i, round(j,4)
 			else:
 
 				my_dict = nx.eigenvector_centrality(self.no_ego_net,
@@ -515,21 +521,31 @@ class Graph(object):
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 				if average:
-					return sum(new.values())/float(len(new.values()))
+					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
-					return new
+					for i,j in new.items():
+						print i, round(j,4)
 
 
 		else:
-			try:
-				my_dict = nx.eigenvector_centrality(self.mynet,
-					max_iter = iterations)
-				return my_dict[node]
-			except:
+			if withme:
+				my_dict = nx.eigenvector_centrality(self.mynet,max_iter = iterations)
 				try:
-					return my_dict[self.name_to_id(node)]
+					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
 				except:
-					print "Invalid node name"
+					try:
+						return my_dict[self.name_to_id(node)]
+					except:
+						print "Invalid node name"
+			else:
+				my_dict = nx.eigenvector_centrality(self.no_ego_net,max_iter = iterations)
+				try:
+					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+				except:
+					try:
+						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
+					except:
+						print "Invalid node name"
 
 
 	def degree(self, node):
@@ -952,7 +968,7 @@ class Graph(object):
 				+ " about your tie strengths.")
 
 
-def download_files():
+def update_files():
 	"""A utility function to make it easier to get all the files 
 	for the lab into the Wakari file system. There might be
 	a better way to do this, but it isn't clear in the Wakari docs.
@@ -966,8 +982,9 @@ def download_files():
 			for line in file_:
 				new_file.write(line)
 			new_file.close()
-	name = "Population_data.txt"
-	f = open(name,"wb")
-	for line in urllib2.urlopen(stem+name):
-		f.write(line)
-	f.close()
+	names = ["networks_lab.py", "D3JS.html","Population_data.txt"]
+	for f in names:
+		f = open(name,"wb")
+		for line in urllib2.urlopen(stem+name):
+			f.write(line)
+		f.close()
