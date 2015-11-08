@@ -349,9 +349,9 @@ class Graph(object):
 
 	def avg_path_length(self, withme=False):
 		if withme:
-			return nx.average_shortest_path_length(self.mynet)
+			return round(nx.average_shortest_path_length(self.mynet),4)
 		else:
-			return nx.average_shortest_path_length(self.no_ego_net)
+			return round(nx.average_shortest_path_length(self.no_ego_net),4)
 
 
 	def diameter(self, withme=False):
@@ -391,7 +391,7 @@ class Graph(object):
 			if withme:
 				my_dict = nx.degree_centrality(self.mynet)
 				try:
-					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+					print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[node],4))
 				except:
 					try:
 						return my_dict [self.name_to_id(node)]
@@ -400,10 +400,10 @@ class Graph(object):
 			else:
 				my_dict = nx.degree_centrality(self.no_ego_net)
 				try:
-					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+					print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[node],4))
 				except:
 					try:
-						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
+						print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[[self.name_to_id(node)]],4))
 					except:
 						print "Invalid node name"
 
@@ -436,7 +436,7 @@ class Graph(object):
 			if withme:
 				my_dict = nx.betweenness_centrality(self.mynet)
 				try:
-					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+					print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[node],4))
 				except:
 					try:
 						return my_dict[self.name_to_id(node)]
@@ -445,10 +445,10 @@ class Graph(object):
 			else:
 				my_dict = nx.betweenness_centrality(self.no_ego_net)
 				try:
-					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+					print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[node],4))
 				except:
 					try:
-						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
+						print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[[self.name_to_id(node)]],4))
 					except:
 						print "Invalid node name"
 
@@ -480,7 +480,7 @@ class Graph(object):
 			if withme:
 				my_dict = nx.closeness_centrality(self.mynet)
 				try:
-					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+					print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[node],4))
 				except:
 					try:
 						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
@@ -489,10 +489,10 @@ class Graph(object):
 			else:
 				my_dict = nx.closeness_centrality(self.no_ego_net)
 				try:
-					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+					print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[node],4))
 				except:
 					try:
-						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
+						print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[[self.name_to_id(node)]],4))
 					except:
 						print "Invalid node name"
 
@@ -512,6 +512,7 @@ class Graph(object):
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
+					return new
 			else:
 
 				my_dict = nx.eigenvector_centrality(self.no_ego_net,
@@ -525,13 +526,14 @@ class Graph(object):
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
+					return new
 
 
 		else:
 			if withme:
 				my_dict = nx.eigenvector_centrality(self.mynet,max_iter = iterations)
 				try:
-					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+					print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[node],4))
 				except:
 					try:
 						return my_dict[self.name_to_id(node)]
@@ -540,10 +542,10 @@ class Graph(object):
 			else:
 				my_dict = nx.eigenvector_centrality(self.no_ego_net,max_iter = iterations)
 				try:
-					print "The coefficient for node "+str(node)+ "is "+ str(my_dict[node])
+					print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[node],4))
 				except:
 					try:
-						print "The coefficient for node "+str(node)+ "is "+ str(my_dict[[self.name_to_id(node)]])
+						print "The coefficient for node "+str(node)+ "is "+ str(round(my_dict[[self.name_to_id(node)]],4))
 					except:
 						print "Invalid node name"
 
@@ -558,10 +560,10 @@ class Graph(object):
 	def average_degree(self, withme=False):
 		if withme:
 			vals = list(self.mynet.degree(self.mynet.nodes()).values())
-			return sum(vals)/float(len(vals))
+			return round(sum(vals)/float(len(vals)),4)
 		else:
 			vals = list(self.mynet.degree(self.no_ego_net.nodes()).values())
-			return sum(vals)/float(len(vals))
+			return round(sum(vals)/float(len(vals)),4)
 			
 
 
@@ -586,7 +588,7 @@ class Graph(object):
 		clustering = nx.clustering(self.mynet, node_list)
 		new_dict = {}
 		for node, val in clustering.items():
-			new_dict[node] = val
+			new_dict[self.id_to_name[node]] = round(val,4)
 
 		try:
 			g_name = " the group" + str(self.contexts_list[group]) + "is: "
@@ -601,7 +603,7 @@ class Graph(object):
 			return new_dict
 		else: 
 			print "The average clustering coefficient for people in" +g_name
-			return sum(new_dict.values())/float(len(new_dict.values()))
+			return round(sum(new_dict.values())/float(len(new_dict.values())),4)
 
 	def clustering_by_attribute_summary(self, attribute):
 		""" This allows the user to group people by an attribute
@@ -628,9 +630,8 @@ class Graph(object):
 				cluster_dict[i] = cluster_coef
 				tot = sum(rewrite.values())/float(len(rewrite.values()))
 				print ("Average clustering coef. for friends with attribute value "
-					+str(i)+" is: "+ str(tot))
+					+str(i)+" is: "+ str(round(tot,4)))
 
-			return cluster_dict      
 
 
 	def clustering_by_attribute(self, attribute):
@@ -654,12 +655,10 @@ class Graph(object):
 				cluster_coef = nx.clustering(self.mynet, nodes)
 				rewrite = {}
 				for r in cluster_coef:
-					rewrite[self.id_to_name(r)] = cluster_coef[r]
-				cluster_dict[i] = cluster_coef
+					rewrite[self.id_to_name(r)] = round(cluster_coef[r],4)
 				print ("Clustering coef. for friends with attribute value "
 					+str(i)+" is: "+ str(rewrite))
 
-			return cluster_dict
 
 
 	def associativity_by_attribute(self, attribute):
@@ -701,33 +700,9 @@ class Graph(object):
 				val = trans_dict[i]
 				avg = sum(val)/float(len(val))
 				avg_dict[i] = avg
-				print "Associativity avg for people with value "+str(i) + " is: " +str(avg)
+				print "Associativity avg for people with value "+str(i) + " is: " +str(round(avg,4))
 
-			return avg_dict
                 
-                     
-	def get_average_clustering(self, a_dictionary):
-		""" This method accepts a dictionary or a dictionary of 
-		dictionaries and finds the average values sorted by keys.
-		"""
-        
-		try:
-			for i in a_dictionary:
-				my_list = []
-				sub_dict = a_dictionary[i]
-				for j in sub_dict:
-					my_list.append(sub_dict[j])
-				avg= sum(my_list)/float(len(my_list))
-				print ("Avg. clustering for attribute value "
-					+str(i)+ " is " +str(avg))
-            
-		except:
-			my_list = []
-			for i in a_dictionary:
-				my_list.append(a_dictionary[i])
-			avg = sum(my_list)/float(len(my_list))  
-		print "Average clustering for group is "+str(avg)
-
  
 	def attribute_by_attribute(self, group_number, attribute_two):
 		""" This method allows the user to see the prevalences of a 
@@ -757,7 +732,7 @@ class Graph(object):
 
 			for j in vals:
 				try:
-					number = vals[j]/float(count)    
+					number = round(vals[j]/float(count),4)    
 				except:
 					number = 0
 
@@ -790,7 +765,7 @@ class Graph(object):
 			except:
 				number = 0
 
-			print str(j)+" : "+str(number)
+			print str(j)+" : "+ str(round(number,4))
 			
 	def ids_to_names(self):
 		""" Returns a dictionary links IDs to names. """
@@ -820,12 +795,6 @@ class Graph(object):
 			print "Not a valid ID"
 			return id
     
-    
-
-        
-        
-
-
 
 	def ids_to_names(self):
 		""" Returns a dictionary links IDs to names. """
