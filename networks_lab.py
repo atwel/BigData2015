@@ -954,6 +954,7 @@ def update_files():
 	for f_name in range(1,4):
 		for end in ["_friend_data.csv","_general_data.csv"]:
 			name = str(f_name) +end
+			os.remove(name)
 			file_=urllib2.urlopen(stem+name)
 			new_file = open(name, "wb")
 			for line in file_:
