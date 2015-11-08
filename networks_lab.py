@@ -495,7 +495,7 @@ class Graph(object):
 					except:
 						print "Invalid node name"
 
-	def eigenvector_centrality(self, iterations, withme=False, node=None):
+	def eigenvector_centrality(self, iterations, withme=False, node=None, average=False):
 		my_dict = nx.eigenvector_centrality(self.mynet,
 			max_iter = iterations)
 
