@@ -181,10 +181,10 @@ class Graph(object):
 						+str(colors[count])+ "\"" + ",\"id\":"+"\""
 						+str(rewrite[i]) + "\"" + ",\"name\":"+"\""
 						+str(my_dct["name"]) + "\"" +",\"value\":"
-						+str(mutuals[i]) + ", \"desc\":\"Name:"
-						+str(my_dct["name"]) + "<br>Known from:"
-						+str(my_dct["known from"]) + "<br>Gender:"
-						+str(my_dct["gender"]) + "<br>Race:\"},\n")
+						+str(mutuals[i]) + ", \"desc\":\"Name: "
+						+str(my_dct["name"]) + "<br>Known from: "
+						+str(self.context_list[my_dct["known from"]]) + "<br>Gender: "
+						+str(my_dct["gender"]) + "<br>Race: " + str(race)+"\""+"},\n")
 
 					count +=1
 
@@ -546,7 +546,7 @@ class Graph(object):
 			
 
 
-	def clustering(self, group=0):
+	def clustering(self, group=0, average=False):
 		""" This method calculates the clustering coefficients for the
 		specified group (context number). The default group is the whole
 		network minus the ego because it skews everything so much.
@@ -565,19 +565,24 @@ class Graph(object):
 					node_list.append(i)
 
 		clustering = nx.clustering(self.mynet, node_list)
+		new_dict = {}
+		for node, val in clustering.items():
+			new_dict[node] = val
 
 		try:
-			g_name = self.contexts_list[group]
+			g_name = " the group" + str(self.contexts_list[group]) + "is: "
 		except:
 			if group == -1:
-				g_name = "Whole Graph (without you)"
+				g_name = " the whole network (without you) is: "
 			if group == 0:
-				g_name = "Whole Graph"
+				g_name = " the whole network is: "
 
-		print "Clustering coefficient for people in the group " + g_name
-
-		return clustering
-
+		if not average:
+			print "Clustering coefficient for people in" + g_name
+			return new_dict
+		else: 
+			print "The average clustering coefficient for people in" +g_name
+			return sum(new_dict.values())/float(len(new_dict.values()))
 
 	def clustering_by_attribute_summary(self, attribute):
 		""" This allows the user to group people by an attribute
