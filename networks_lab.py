@@ -300,7 +300,7 @@ class Graph(object):
 
 			p = self.friend_db[int(i)]["gender"]
 			if p==p:
-				self.friend_db[int(i)]["gender"] = int(p)
+				self.friend_db[int(i)]["gender"] = str(p)
 
 			if type(self.friend_db[int(i)]["mutuals"]) == str:
 				mut_str = self.friend_db[int(i)]["mutuals"][1:-1].split(",")
