@@ -100,7 +100,7 @@ class Graph(object):
 	def density(self):
 		return nx.density(self.mynet)
 
-	def draw_network(self,file_name="Network_visualization.html",
+	def draw_network(self,file_name="Visualization.html",
 		colors=[], strong=False, weight=False, withme=False):
 		""" This function writes the network to an html file 
 		so that users can explore the network move thoroughly.
