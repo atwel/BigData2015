@@ -951,7 +951,7 @@ def update_files(new=None):
 	a better way to do this, but it isn't clear in the Wakari docs.
 	"""
 	stem = "https://raw.githubusercontent.com/atwel/BigData2015/master/"
-	for f_name in range(1,4)+["example"]:
+	for f_name in range(1,4):
 		for end in ["_friend_data.csv","_general_data.csv"]:
 			name = str(f_name) +end
 			try:
@@ -968,7 +968,7 @@ def update_files(new=None):
 	except:
 		pass
 
-	names = ["networks_lab.py", "D3JS.html","Population_data.txt"]
+	names = ["networks_lab.py", "D3JS.html","Population_data.txt","example_friend_data.csv","example_general_data.csv"]
 	for f in names:
 		fi = open(f,"wb")
 		for line in urllib2.urlopen(stem+f):
