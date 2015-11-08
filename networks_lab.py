@@ -945,7 +945,7 @@ class Graph(object):
 				+ " about your tie strengths.")
 
 
-def update_files():
+def update_files(new=None):
 	"""A utility function to make it easier to get all the files 
 	for the lab into the Wakari file system. There might be
 	a better way to do this, but it isn't clear in the Wakari docs.
@@ -974,6 +974,12 @@ def update_files():
 		for line in urllib2.urlopen(stem+f):
 			fi.write(line)
 		fi.close()
+	if new!=None:
+		f = open(new,"wb")
+		for line in urllib2.urlopen(stem+new):
+			f.write(line)
+		f.close()
+		
 	try:
 		os.remove("networks_lab.pyc")
 	except:
