@@ -951,7 +951,7 @@ def update_files(new=None):
 	a better way to do this, but it isn't clear in the Wakari docs.
 	"""
 	stem = "https://raw.githubusercontent.com/atwel/BigData2015/master/"
-	for f_name in range(1,4):
+	for f_name in range(1,4)+["example"]:
 		for end in ["_friend_data.csv","_general_data.csv"]:
 			name = str(f_name) +end
 			try:
