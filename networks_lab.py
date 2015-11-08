@@ -67,13 +67,6 @@ class Graph(object):
 		"""
 
 		self.defined_colors = []
-		my_dict = {}
-
-		# Letting the user pick the colors
-		for i in dictionary.keys():
-			my_dict[i] = raw_input("\nWhat color should nodes be"
-				+"for people with value " + str(dictionary[i])+"?")
-			clear_screen()
 
 		# creating a list with the appropriate colors 
 		for person in self.mynet.nodes():
@@ -81,10 +74,10 @@ class Graph(object):
 				self.defined_colors.append("blue")
 			else:
 				key = self.friend_db[person][attribute]
-			try:
-				self.defined_colors.append(my_dict[key])
-			except:
-				self.defined_colors.append("white")
+				try:
+					self.defined_colors.append(my_dict[key])
+				except:
+					self.defined_colors.append("white")
 
 
 	def count_components(self, withme=False):
