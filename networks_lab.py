@@ -963,10 +963,7 @@ def update_files():
 			for line in file_:
 				new_file.write(line)
 			new_file.close()
-	try:
-		os.remove("networks_lab.py")
-	except:
-		pass
+
 	names = ["networks_lab.py", "D3JS.html","Population_data.txt"]
 	for f in names:
 		f = open(name,"wb")
