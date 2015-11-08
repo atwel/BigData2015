@@ -294,17 +294,13 @@ class Graph(object):
 			if q==q:
 				self.friend_db[int(i)]["known from"] = int(q)
 
-			r = self.friend_db[int(i)][attrs[6]]
+			r = self.friend_db[int(i)]["race"]
 			if r==r:
-				self.friend_db[int(i)][attrs[6]] = int(r)
+				self.friend_db[int(i)]["race"] = int(r)
 
-			p = self.friend_db[int(i)][attrs[7]]
+			p = self.friend_db[int(i)]["gender"]
 			if p==p:
-				self.friend_db[int(i)][attrs[7]] = int(p)
-				
-			s = self.friend_db[int(i)][attrs[8]]
-			if s==s:
-				self.friend_db[int(i)][attrs[8]] = int(s)
+				self.friend_db[int(i)]["gender"] = int(p)
 
 			if type(self.friend_db[int(i)]["mutuals"]) == str:
 				mut_str = self.friend_db[int(i)]["mutuals"][1:-1].split(",")
