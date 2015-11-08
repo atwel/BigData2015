@@ -175,7 +175,10 @@ class Graph(object):
 					my_dct = dict(self.friend_db[int(i)]) 
 
 					mutuals[i]=len(my_dct["mutuals"])
-						
+					if my_dct["race"] == 1:
+						race = "white"
+					else:
+						race = "nonwhite"
 					# The next 3 lines create the bulk of the text
 					giant_string += ("{\"color\":" + "\""
 						+str(colors[count])+ "\"" + ",\"id\":"+"\""
