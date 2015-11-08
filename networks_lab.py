@@ -186,7 +186,7 @@ class Graph(object):
 						+str(my_dct["name"]) + "\"" +",\"value\":"
 						+str(mutuals[i]) + ", \"desc\":\"Name: "
 						+str(my_dct["name"]) + "<br>Known from: "
-						+str(self.context_list[my_dct["known from"]]) + "<br>Gender: "
+						+str(self.contexts_list[my_dct["known from"]]) + "<br>Gender: "
 						+str(my_dct["gender"]) + "<br>Race: " + str(race)+"\""+"},\n")
 
 					count +=1
