@@ -98,7 +98,7 @@ class Graph(object):
 				+" components")
 
 	def density(self):
-		return nx.density(self.mynet)
+		return round(nx.density(self.mynet),4)
 
 	def draw_network(self,file_name="Visualization.html",
 		colors=[], strong=False, weight=False, withme=False):
@@ -375,6 +375,7 @@ class Graph(object):
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
+					return new
 	 		else:
 				my_dict = nx.degree_centrality(self.no_ego_net)
 
@@ -386,6 +387,7 @@ class Graph(object):
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
+					return new
 	
 		else:
 			if withme:
@@ -420,6 +422,7 @@ class Graph(object):
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
+					return new
 			else:
 				my_dict = nx.betweenness_centrality(self.no_ego_net)
 
@@ -431,6 +434,7 @@ class Graph(object):
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
+					return new
 
 		else:
 			if withme:
@@ -465,6 +469,7 @@ class Graph(object):
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
+					return new
 			else:
 				my_dict = nx.closeness_centrality(self.no_ego_net)
 
@@ -476,6 +481,7 @@ class Graph(object):
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
+					return new
 		else:
 			if withme:
 				my_dict = nx.closeness_centrality(self.mynet)
@@ -588,7 +594,7 @@ class Graph(object):
 		clustering = nx.clustering(self.mynet, node_list)
 		new_dict = {}
 		for node, val in clustering.items():
-			new_dict[self.id_to_name[node]] = round(val,4)
+			new_dict[self.id_to_name(node)] = round(val,4)
 
 		try:
 			g_name = " the group" + str(self.contexts_list[group]) + "is: "
@@ -658,6 +664,7 @@ class Graph(object):
 					rewrite[self.id_to_name(r)] = round(cluster_coef[r],4)
 				print ("Clustering coef. for friends with attribute value "
 					+str(i)+" is: "+ str(rewrite))
+				print ""
 
 
 
@@ -886,7 +893,7 @@ class Graph(object):
 			except:
 				val = 0
 			print "Count of triads inspected: "+str(len(hit))
-			print val
+			print round(val,4)
 		else:
 			print ("ERROR: You must first enter information about"
 				+" strong ties [Command define_strong_ties()].")
@@ -931,7 +938,7 @@ class Graph(object):
 			except:
 				val = 0
 			print "Count of triads inspected: "+str(len(hit))
-			print val
+			print round(val,4)
 		else:
 			print ("ERROR: You must first enter information"
 				+ " about your tie strengths.")
