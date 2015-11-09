@@ -702,6 +702,10 @@ class Graph(object):
 						val = "weak"
 					elif i==1:
 						val = "strong"
+					elif i == "0":
+						val = "weak"
+					elif i == "1":
+						was = "strong"
 					else:
 						val = "unknown"
 				elif attribute=="known from":
@@ -753,6 +757,10 @@ class Graph(object):
 						val = "weak"
 					elif i==1:
 						val = "strong"
+					elif i == "0":
+						val = "weak"
+					elif i == "1":
+						was = "strong"
 					else:
 						val = "unknown"
 				elif attribute=="known from":
@@ -821,6 +829,10 @@ class Graph(object):
 						val = "weak"
 					elif i==1:
 						val = "strong"
+					elif i == "0":
+						val = "weak"
+					elif i == "1":
+						was = "strong"
 					else:
 						val = "unknown"
 				elif attribute=="known from":
@@ -871,10 +883,14 @@ class Graph(object):
 					else:
 						val = "unknown"
 				elif attribute_two=="strong tie":
-					if j == 0:
+					if i == 0:
 						val = "weak"
-					elif j==1:
+					elif i==1:
 						val = "strong"
+					elif i == "0":
+						val = "weak"
+					elif i == "1":
+						was = "strong"
 					else:
 						val = "unknown"
 				try:
@@ -921,10 +937,14 @@ class Graph(object):
 				else:
 					val = "unknown"
 			elif attribute=="strong tie":
-				if j == 0:
+				if i == 0:
 					val = "weak"
-				elif j==1:
+				elif i==1:
 					val = "strong"
+				elif i == "0":
+					val = "weak"
+				elif i == "1":
+					was = "strong"
 				else:
 					val = "unknown"
 			elif attribute=="known from":
