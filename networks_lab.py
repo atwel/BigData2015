@@ -176,7 +176,7 @@ class Graph(object):
 					cs = self.c_cent
 					ds = self.d_cent
 					es = self.e_cent
-					
+				print nodes	
 				# In both the loop for nodes and links, we do n-1
 				# first and the last one manually because of the
 				# the need to insert the right characters for
