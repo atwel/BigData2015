@@ -704,6 +704,8 @@ class Graph(object):
 						val = "strong"
 					else:
 						val = "unknown"
+				elif attribute=="known from":
+					val = self.contexts_list[i]
 				tot = sum(rewrite.values())/float(len(rewrite.values()))
 				print ("Average clustering coef. for friends with " +attribute+ " value "
 					+val+" is: "+ str(round(tot,4)))
@@ -753,6 +755,8 @@ class Graph(object):
 						val = "strong"
 					else:
 						val = "unknown"
+				elif attribute=="known from":
+					val = self.contexts_list[i]
 				print ("Clustering coef. for friends with "+ attribute+ " value "
 					+val+" is: "+ str(rewrite))
 				print ""
@@ -819,7 +823,9 @@ class Graph(object):
 						val = "strong"
 					else:
 						val = "unknown"
-				print "Associativity avg for people with " +attribute+ "value "+val + " is: " +str(round(avg,4))
+				elif attribute=="known from":
+					val = self.contexts_list[i]
+				print "Associativity avg for people with " +attribute+ " value "+val + " is: " +str(round(avg,4))
 
                 
  
@@ -921,6 +927,8 @@ class Graph(object):
 					val = "strong"
 				else:
 					val = "unknown"
+			elif attribute=="known from":
+				val = self.contexts_list[i]
 			try:
 				number = vals[j]/float(count)    
 			except:
