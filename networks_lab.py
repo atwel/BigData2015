@@ -20,7 +20,6 @@ import os
 
 
 
-
 class Graph(object):
 	""" This is the only class unique to the module. It holds key variables
 	and other objects (like the facebook connection and the pandas 
@@ -43,8 +42,15 @@ class Graph(object):
 		self.defined_colors = []
 		self.me = False
 		self.old_positions=[]
-
-
+		self.note = "<br><strong>Programming note:</strong><p>There are two lines of code above. The first could be run by itself, but the second will only work if the first has already run. This is because the first line creates an object named <code>network</code> and only once we've created it, can we \"call\" it's <em>method</em> named <code>load_data</code>. A method (or more generally a function) describes some action to be done. Here we ask the object to load data into itself by \"calling\" the appropriate method.</p><br><p>It's like we've made a box and now we ask the box to fill with water. The box can do all sorts of stuff, the specifications of which are contained in the module <code>netlab</code>. The module contains the blueprints for box objects (here something named <code>FBgraph</code>) and can make as many as you'd like. We just happened to name ours <code>network</code> but almost anything else would work. The process of naming an object is called assignment and in Python we do it with an equals sign; the first line can be read as \"Hey <code>netlab</code>, let's make a <code>Graph</code> object and name it <code>network</code>.\" Then when we use the name later, it gives us that unique object.</p><br><p>Once we've constructed the <code>network</code> object, we tell it to load the dataset named <code>\"example.\"</code> The word <code>\"example\"</code> here is called an <em>argument</em>. Most methods have arguments that specify some sort of details about the action to be taken. Sometimes an argument is required for the code to work (e.g. what is the name of the dataset I should load), in other instances they are optional. When they are optional, there is a default value described inside the method. If you want to change it, you have to name that argument and set its value equal to something. You can do this for required arguments too. For example, in the line above, the name of argument asking for the name of file to be loaded is <code>file_name</code> so the verbose way to write the same command is <code>network.load_data(file_name=\"example\")</code>. We'll make use of arguments later so if this concept doesn't make sense just yet, it should as you use them more.</p><br><p>Finally, you'll note that running this code returned the message <code>Data successfully loaded.</code> From a programming perspective, this is unnecessary and perhaps even annoying, but because the notebook's signal that it is done running code is so subtle (the text to the left of code box changes from <code>In [*]:</code> to <code>In [x]:</code> where x is the number of code snippnets run up to this point), I wanted to make it clearer. This lab uses messages like this to both tell you what is happening and give you the information you're asking for.</p><br><br>"
+		self.b_cent = {}
+		self.c_cent = {}
+		self.d_cent = {}
+		self.e_cent = {}
+		self.b_cent_w = {}
+		self.c_cent_w = {}
+		self.d_cent_w = {}
+		self.e_cent_w = {}
 
 	def random_sample(self,count=200):
 		""" Creating a random sampling of the whole network to make
@@ -160,7 +166,17 @@ class Graph(object):
 				# of the database because it colors nodes in the order 
 				# of this list and the imported color list is in that order
 				nodes = self.mynet.nodes()
-
+				if withme:
+					bs = self.b_cent_w
+					cs = self.c_cent_w
+					ds = self.d_cent_w
+					es = self.e_cent_w
+				else:
+					bs = self.b_cent
+					cs = self.c_cent
+					ds = self.d_cent
+					es = self.e_cent
+					
 				# In both the loop for nodes and links, we do n-1
 				# first and the last one manually because of the
 				# the need to insert the right characters for
@@ -187,8 +203,13 @@ class Graph(object):
 						+str(my_dct["name"]) + "\"" +",\"value\":"
 						+str(mutuals[i]) + ", \"desc\":\"Name: "
 						+str(my_dct["name"]) + "<br>Known from: "
-						+str(self.contexts_list[my_dct["known from"]]) + "<br>Gender: "
-						+str(my_dct["gender"]) + "<br>Race: " + str(race)+"\""+"},\n")
+						+str(self.contexts_list[my_dct["known from"]]) 
+						+ "<br>Gender: "+str(my_dct["gender"]) 
+						+ "<br>Race: "+str(race)
+						+ "<br>Betweenness Centrality: " + str(bs[j])
+						+ "<br>Closeness Centrality: " + str(cs[j])
+						+ "<br>Degree Centrality: " + str(ds[j])
+						+ "<br>Eigenvector Centrality: " + str(es[j])+"\""+"},\n")
 
 					count +=1
 
@@ -340,6 +361,15 @@ class Graph(object):
 			if nx.is_isolate(bu, n):
 				bu.remove_node(n)  
 		self.no_ego_net = bu
+		
+		self.b_cent = self.betweenness_centrality(withme=False)
+		self.c_cent = self.closeness_centrality(withme=False)
+		self.d_cent = self.degree_centrality(withme=False)
+		self.e_cent = self.eigenvector_centrality(iterations=100,withme=False)
+		self.b_cent_w = self.betweenness_centrality(withme=True)
+		self.c_cent_w = self.closeness_centrality(withme=True)
+		self.d_cent_w = self.degree_centrality(withme=True)
+		self.e_cent_w = self.eigenvector_centrality(iterations=100,withme=True)
 
 		print "Data successfully loaded"
 
@@ -367,24 +397,26 @@ class Graph(object):
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+					new2[i] = my_dict[i]
 				if average:
 					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
-					return new
+					return new2
 	 		else:
 				my_dict = nx.degree_centrality(self.no_ego_net)
 
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+					new2[i] = my_dict[i]
 				if average:
 					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
-					return new
+					return new2
 	
 		else:
 			if withme:
@@ -414,24 +446,26 @@ class Graph(object):
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+					new2[i] = my_dict[i]
 				if average:
 					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
-					return new
+					return new2
 			else:
 				my_dict = nx.betweenness_centrality(self.no_ego_net)
 
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+					new2[i] = my_dict[i]
 				if average:
 					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
-					return new
+					return new2
 
 		else:
 			if withme:
@@ -461,24 +495,26 @@ class Graph(object):
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+					new2[i] = my_dict[i]
 				if average:
 					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
-					return new
+					return new2
 			else:
 				my_dict = nx.closeness_centrality(self.no_ego_net)
 
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+					new2[i] = my_dict[i]
 				if average:
 					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
-					return new
+					return new2
 		else:
 			if withme:
 				my_dict = nx.closeness_centrality(self.mynet)
@@ -510,12 +546,13 @@ class Graph(object):
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+					new2[i] = my_dict[i]
 				if average:
 					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
-					return new
+					return new2
 			else:
 
 				my_dict = nx.eigenvector_centrality(self.no_ego_net,
@@ -524,12 +561,13 @@ class Graph(object):
 				new = {}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
+					new2[i] = my_dict[i]
 				if average:
 					print "The average is " + str(round(sum(new.values())/float(len(new.values())),4))
 				else:
 					for i,j in new.items():
 						print i, round(j,4)
-					return new
+					return new2
 
 
 		else:
@@ -631,9 +669,30 @@ class Graph(object):
 				for r in cluster_coef:
 					rewrite[self.id_to_name(r)] = cluster_coef[r]
 				cluster_dict[i] = cluster_coef
+				if attribute == "race":
+					if i == 1:
+						val = "white"
+					elif i== 2:
+						val = "nonwhite"
+					else:
+						val = "unknown"
+				elif attribute=="gender":
+					if i=="female":
+						val = "female"
+					elif i=="male":
+						val = "male"
+					else:
+						val = "unknown"
+				elif attribute=="strong tie":
+					if i == 0:
+						val = "weak"
+					elif i==1:
+						val = "strong"
+					else:
+						val = "unknown"
 				tot = sum(rewrite.values())/float(len(rewrite.values()))
-				print ("Average clustering coef. for friends with attribute value "
-					+str(i)+" is: "+ str(round(tot,4)))
+				print ("Average clustering coef. for friends with " +attribute+ " value "
+					+val+" is: "+ str(round(tot,4)))
 
 
 
@@ -659,8 +718,29 @@ class Graph(object):
 				rewrite = {}
 				for r in cluster_coef:
 					rewrite[self.id_to_name(r)] = round(cluster_coef[r],4)
-				print ("Clustering coef. for friends with attribute value "
-					+str(i)+" is: "+ str(rewrite))
+				if attribute == "race":
+					if i == 1:
+						val = "white"
+					elif i== 2:
+						val = "nonwhite"
+					else:
+						val = "unknown"
+				elif attribute=="gender":
+					if i=="female":
+						val = "female"
+					elif i=="male":
+						val = "male"
+					else:
+						val = "unknown"
+				elif attribute=="strong tie":
+					if i == 0:
+						val = "weak"
+					elif i==1:
+						val = "strong"
+					else:
+						val = "unknown"
+				print ("Clustering coef. for friends with "+ attribute+ " value "
+					+val+" is: "+ str(rewrite))
 				print ""
 
 
@@ -704,7 +784,28 @@ class Graph(object):
 				val = trans_dict[i]
 				avg = sum(val)/float(len(val))
 				avg_dict[i] = avg
-				print "Associativity avg for people with value "+str(i) + " is: " +str(round(avg,4))
+				if attribute == "race":
+					if i == 1:
+						val = "white"
+					elif i== 2:
+						val = "nonwhite"
+					else:
+						val = "unknown"
+				elif attribute=="gender":
+					if i=="female":
+						val = "female"
+					elif i=="male":
+						val = "male"
+					else:
+						val = "unknown"
+				elif attribute=="strong tie":
+					if i == 0:
+						val = "weak"
+					elif i==1:
+						val = "strong"
+					else:
+						val = "unknown"
+				print "Associativity avg for people with " +attribute+ "value "+val + " is: " +str(round(avg,4))
 
                 
  
@@ -731,7 +832,7 @@ class Graph(object):
 						vals[which] = 1
 						count +=1
 
-			print "For friends in group "+str(group_number)+"breakdown into the following percentages for attribute "+str(attribute_two)
+			print "For friends in group "+str(group_number)+" breakdown into the following percentages for attribute "+str(attribute_two)
 			print "(Sample size = "+str(count)+")"
 
 			for j in vals:
