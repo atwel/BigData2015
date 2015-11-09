@@ -395,6 +395,7 @@ class Graph(object):
 			if withme:
 				my_dict = nx.degree_centrality(self.mynet)
 				new = {}
+				new2={}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 					new2[i] = my_dict[i]
@@ -408,6 +409,7 @@ class Graph(object):
 				my_dict = nx.degree_centrality(self.no_ego_net)
 
 				new = {}
+				new2={}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 					new2[i] = my_dict[i]
@@ -444,6 +446,7 @@ class Graph(object):
 			if withme:
 				my_dict = nx.betweenness_centrality(self.mynet)
 				new = {}
+				new2={}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 					new2[i] = my_dict[i]
@@ -457,6 +460,7 @@ class Graph(object):
 				my_dict = nx.betweenness_centrality(self.no_ego_net)
 
 				new = {}
+				new2={}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 					new2[i] = my_dict[i]
@@ -493,6 +497,7 @@ class Graph(object):
 			if withme:
 				my_dict = nx.closeness_centrality(self.mynet)
 				new = {}
+				new2={}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 					new2[i] = my_dict[i]
@@ -506,6 +511,7 @@ class Graph(object):
 				my_dict = nx.closeness_centrality(self.no_ego_net)
 
 				new = {}
+				new2={}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 					new2[i] = my_dict[i]
@@ -544,6 +550,7 @@ class Graph(object):
 				my_dict =nx.eigenvector_centrality(self.mynet,
 					max_iter = iterations)
 				new = {}
+				new2={}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 					new2[i] = my_dict[i]
@@ -559,6 +566,7 @@ class Graph(object):
 					max_iter = iterations)
 
 				new = {}
+				new2={}
 				for i in my_dict:
 					new[self.id_to_name(i)] = my_dict[i]
 					new2[i] = my_dict[i]
