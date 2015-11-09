@@ -836,12 +836,33 @@ class Graph(object):
 			print "(Sample size = "+str(count)+")"
 
 			for j in vals:
+				if attribute_two == "race":
+					if j == 1:
+						val = "white"
+					elif j== 2:
+						val = "nonwhite"
+					else:
+						val = "unknown"
+				elif attribute_two=="gender":
+					if j=="female":
+						val = "female"
+					elif j=="male":
+						val = "male"
+					else:
+						val = "unknown"
+				elif attribute_two=="strong tie":
+					if j == 0:
+						val = "weak"
+					elif j==1:
+						val = "strong"
+					else:
+						val = "unknown"
 				try:
 					number = round(vals[j]/float(count),4)    
 				except:
 					number = 0
 
-				print str(j)+" : "+str(number)
+				print val+" : "+str(number)
 
 
 	def attribute_breakdown(self, attribute):
@@ -865,12 +886,33 @@ class Graph(object):
 		print "(Sample size = "+str(count)+")"
             
 		for j in vals:
+			if attribute_two == "race":
+				if j == 1:
+					val = "white"
+				elif j== 2:
+					val = "nonwhite"
+				else:
+					val = "unknown"
+			elif attribute_two=="gender":
+				if j=="female":
+					val = "female"
+				elif j=="male":
+					val = "male"
+				else:
+					val = "unknown"
+			elif attribute_two=="strong tie":
+				if j == 0:
+					val = "weak"
+				elif j==1:
+					val = "strong"
+				else:
+					val = "unknown"
 			try:
 				number = vals[j]/float(count)    
 			except:
 				number = 0
 
-			print str(j)+" : "+ str(round(number,4))
+			print val+" : "+ str(round(number,4))
 			
 	def ids_to_names(self):
 		""" Returns a dictionary links IDs to names. """
