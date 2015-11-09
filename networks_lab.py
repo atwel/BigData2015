@@ -206,10 +206,10 @@ class Graph(object):
 						+str(self.contexts_list[my_dct["known from"]]) 
 						+ "<br>Gender: "+str(my_dct["gender"]) 
 						+ "<br>Race: "+str(race)
-						+ "<br>Betweenness Centrality: " + str(bs[j])
-						+ "<br>Closeness Centrality: " + str(cs[j])
-						+ "<br>Degree Centrality: " + str(ds[j])
-						+ "<br>Eigenvector Centrality: " + str(es[j])+"\""+"},\n")
+						+ "<br>Betweenness Centrality: " + str(bs[i])
+						+ "<br>Closeness Centrality: " + str(cs[i])
+						+ "<br>Degree Centrality: " + str(ds[i])
+						+ "<br>Eigenvector Centrality: " + str(es[i])+"\""+"},\n")
 
 					count +=1
 
@@ -894,21 +894,21 @@ class Graph(object):
 		print "(Sample size = "+str(count)+")"
             
 		for j in vals:
-			if attribute_two == "race":
+			if attribute == "race":
 				if j == 1:
 					val = "white"
 				elif j== 2:
 					val = "nonwhite"
 				else:
 					val = "unknown"
-			elif attribute_two=="gender":
+			elif attribute=="gender":
 				if j=="female":
 					val = "female"
 				elif j=="male":
 					val = "male"
 				else:
 					val = "unknown"
-			elif attribute_two=="strong tie":
+			elif attribute=="strong tie":
 				if j == 0:
 					val = "weak"
 				elif j==1:
