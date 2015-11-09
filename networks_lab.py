@@ -176,7 +176,6 @@ class Graph(object):
 					cs = self.c_cent
 					ds = self.d_cent
 					es = self.e_cent
-				print nodes	
 				# In both the loop for nodes and links, we do n-1
 				# first and the last one manually because of the
 				# the need to insert the right characters for
@@ -197,30 +196,20 @@ class Graph(object):
 					else:
 						race = "nonwhite"
 					# The next 3 lines create the bulk of the text
-					try:
-						giant_string += ("{\"color\":" + "\""
-							+str(colors[count])+ "\"" + ",\"id\":"+"\""
-							+str(rewrite[i]) + "\"" + ",\"name\":"+"\""
-							+str(my_dct["name"]) + "\"" +",\"value\":"
-							+str(mutuals[i]) + ", \"desc\":\"Name: "
-							+str(my_dct["name"]) + "<br>Known from: "
-							+str(self.contexts_list[my_dct["known from"]]) 
-							+ "<br>Gender: "+str(my_dct["gender"]) 
-							+ "<br>Race: "+str(race)
-							+ "<br>Betweenness Centrality: " + str(bs[i])
-							+ "<br>Closeness Centrality: " + str(cs[i])
-							+ "<br>Degree Centrality: " + str(ds[i])
-							+ "<br>Eigenvector Centrality: " + str(es[i])+"\""+"},\n")
-					except:
-						giant_string += ("{\"color\":" + "\""
-							+str(colors[count])+ "\"" + ",\"id\":"+"\""
-							+str(rewrite[i]) + "\"" + ",\"name\":"+"\""
-							+str(my_dct["name"]) + "\"" +",\"value\":"
-							+str(mutuals[i]) + ", \"desc\":\"Name: "
-							+str(my_dct["name"]) + "<br>Known from: "
-							+str(self.contexts_list[my_dct["known from"]]) 
-							+ "<br>Gender: "+str(my_dct["gender"]) 
-							+ "<br>Race: "+str(race)+"\""+"},\n")
+					giant_string += ("{\"color\":" + "\""
+						+str(colors[count])+ "\"" + ",\"id\":"+"\""
+						+str(rewrite[i]) + "\"" + ",\"name\":"+"\""
+						+str(my_dct["name"]) + "\"" +",\"value\":"
+						+str(mutuals[i]) + ", \"desc\":\"Name: "
+						+str(my_dct["name"]) + "<br>Known from: "
+						+str(self.contexts_list[my_dct["known from"]]) 
+						+ "<br>Gender: "+str(my_dct["gender"]) 
+						+ "<br>Race: "+str(race)
+						+ "<br>Betweenness Centrality: " + str(bs[i])
+						+ "<br>Closeness Centrality: " + str(cs[i])
+						+ "<br>Degree Centrality: " + str(ds[i])
+						+ "<br>Eigenvector Centrality: " + str(es[i])+"\""+"},\n")
+
 
 					count +=1
 
