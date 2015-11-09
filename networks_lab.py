@@ -890,7 +890,7 @@ class Graph(object):
 					elif j == "0":
 						val = "weak"
 					elif j == "1":
-						was = "strong"
+						val = "strong"
 					else:
 						val = "unknown"
 				try:
@@ -944,7 +944,7 @@ class Graph(object):
 				elif j == "0":
 					val = "weak"
 				elif j == "1":
-					was = "strong"
+					val = "strong"
 				else:
 					val = "unknown"
 			elif attribute=="known from":
