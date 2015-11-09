@@ -352,20 +352,26 @@ class Graph(object):
 				self.mynet[int(edge[0])][int(edge[1])]["strong"]
 			except:
 				self.mynet[int(edge[0])][int(edge[1])]["strong"]=0
-		
+		isos = []
 		bu = nx.Graph()
 		bu.add_nodes_from(self.mynet.nodes())
 		bu.add_edges_from(self.mynet.edges())
 		bu.remove_node(self.my_ID)
 		for n in bu.nodes():
 			if nx.is_isolate(bu, n):
-				bu.remove_node(n)  
+				bu.remove_node(n)
+				isos.append(n)
 		self.no_ego_net = bu
 		
 		self.b_cent = self.betweenness_centrality(withme=False)
 		self.c_cent = self.closeness_centrality(withme=False)
 		self.d_cent = self.degree_centrality(withme=False)
 		self.e_cent = self.eigenvector_centrality(iterations=100,withme=False)
+		for iso in isos:
+			self.b_cent[iso]=-1
+			self.c_cent[iso]=-1
+			self.d_cent[iso]=-1
+			self.e_cent[iso]=-1
 		self.b_cent_w = self.betweenness_centrality(withme=True)
 		self.c_cent_w = self.closeness_centrality(withme=True)
 		self.d_cent_w = self.degree_centrality(withme=True)
