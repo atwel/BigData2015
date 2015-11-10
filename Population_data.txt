@@ -1,4 +1,24 @@
-Network named "Example"
+Network named "1"
+- US population: 72% white, 28% nonwhite
+- High School area census: 95.7% white, 4.3% nonwhite
+- High School itself: 94.6% white, 5.4% nonwhite
+- University 1 (group 2) area census: 82% white, 18% nonwhite
+- University 1 itself: 80% white, 20% nonwhite
+
+Network named "2"
+- US population: 72% white, 28% nonwhite
+- School area census: 92% white, 8% nonwhite
+- Work area census: 90.5% white, 9.5% nonwhite
+- Social Area census: 95.7% white, 4.3% nonwhite
+
+Network named "3"
+- US population: 72% white, 28% nonwhite
+- School itself: 66% white, 36% nonwhite
+- City 4: 82% white, 18% nonwhite
+- City 3: 44% white, 56% nonwhite
+- City 1: 77% white, 23% nonwhite
+
+Network named "4"
 - US population: 72% white, 28% nonwhite
 - High School (group 1) area census: 95.7% white, 4.3% nonwhite
 - High School itself: 94.6% white, 5.4% nonwhite
